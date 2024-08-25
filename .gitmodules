@@ -1,3 +1,3 @@
-[submodule "Assets/Scripts"]
-	path = Assets/Scripts
+[submodule "Assets/Scripts/KarpysUtils"]
+	path = Assets/Scripts/KarpysUtils
 	url = https://github.com/Karpys/KarpysUtils.git
