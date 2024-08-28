@@ -1,5 +1,6 @@
 ﻿namespace Flash.World
 {
+    using Manager;
     using UnityEngine;
 
     public class RoomEnterCollision : MonoBehaviour
@@ -20,6 +21,7 @@
 
         private void PlayerEnter()
         {
+            CameraManager.Instance.Attach(m_Level.transform);
             m_Level.StartLevel();
         }
     }
