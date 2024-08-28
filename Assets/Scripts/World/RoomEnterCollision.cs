@@ -1,6 +1,5 @@
 ﻿namespace Flash.World
 {
-    using KarpysDev.KarpysUtils;
     using UnityEngine;
 
     public class RoomEnterCollision : MonoBehaviour
