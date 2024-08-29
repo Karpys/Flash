@@ -1,4 +1,4 @@
-﻿namespace Manager
+﻿namespace Flash.Manager
 {
     using System;
     using KarpysDev.KarpysUtils;

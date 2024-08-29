@@ -1,13 +1,41 @@
 ﻿namespace Flash.World
 {
-    using System;
+    using KarpysDev.KarpysUtils;
+    using Manager;
+    using Player;
     using UnityEngine;
 
-    public abstract class BaseMonster : MonoBehaviour
+    public interface ITargetProvider
     {
+        Vector3 TargetPosition { get; }
+    }
+    public abstract class BaseMonster : MonoBehaviour,ITargetProvider
+    {
+        [SerializeField] private float m_BehaveDelay = 1;
+
+        private Clock m_BehaveSwitch = null;
+        private bool m_ActiveBehave = false;
+        protected PlayerController m_PlayerController = null;
+
+        public Vector3 TargetPosition => m_PlayerController.transform.position;
+
+        protected virtual void Awake()
+        {
+            m_PlayerController = GameManager.Instance.PlayerController;
+            m_BehaveSwitch = new Clock(m_BehaveDelay, ActiveBehave);
+        }
+
+        private void ActiveBehave()
+        {
+            m_ActiveBehave = true;
+        }
+
         private void Update()
         {
-            Behave();
+            m_BehaveSwitch.UpdateClock();
+            
+            if(m_ActiveBehave)
+                Behave();
         }
 
         protected abstract void Behave();
