@@ -13,6 +13,7 @@
     {
         [SerializeField] private float m_BehaveDelay = 1;
 
+        private bool m_IsDead = false;
         private Clock m_BehaveSwitch = null;
         private bool m_ActiveBehave = false;
         protected PlayerController m_PlayerController = null;
@@ -34,10 +35,21 @@
         {
             m_BehaveSwitch.UpdateClock();
             
-            if(m_ActiveBehave)
+            if(m_ActiveBehave && !m_IsDead)
                 Behave();
         }
 
         protected abstract void Behave();
+
+        protected void TriggerDeath()
+        {
+            m_IsDead = true;
+            DeathAnim();
+        }
+
+        protected virtual void DeathAnim()
+        {
+            Destroy(gameObject);
+        }
     }
 }

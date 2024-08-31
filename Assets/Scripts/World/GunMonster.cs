@@ -23,12 +23,20 @@ namespace Flash.World
             m_GunLookAt.SetTarget(m_PlayerController.transform);
             m_ShooterBehaviour = new ShooterBehaviour(m_Bullet, this, m_BulletCount, m_ShootDelay, m_ShootForce);
             m_AttackCountUI.Initialize(m_BulletCount);
-            m_ShooterBehaviour.OnShoot += m_AttackCountUI.PopAttack;
+            m_ShooterBehaviour.OnShoot += OnShoot;
         }
 
         protected override void Behave()
         {
             m_ShooterBehaviour.Behave();
+        }
+
+        private void OnShoot()
+        {
+            m_AttackCountUI.RemoveAttack();
+
+            if (m_ShooterBehaviour.BulletCount <= 0)
+                TriggerDeath();
         }
     }
 }

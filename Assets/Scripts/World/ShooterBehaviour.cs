@@ -14,7 +14,7 @@
 
         private Clock m_ShootClock = null;
         public Action OnShoot = null;
-        
+        public int BulletCount => m_BulletCount;
         public ShooterBehaviour(Transform bullet, ITargetProvider targetProvider,int bulletCount, float shootDelay, float shootForce)
         {
             m_Bullet = bullet;
@@ -22,9 +22,9 @@
             m_BulletCount = bulletCount;
             m_ShootDelay = shootDelay;
             m_ShootForce = shootForce;
-
             m_ShootClock = new Clock(shootDelay, ShootAt);
         }
+
 
         public void Behave()
         {
@@ -36,9 +36,9 @@
         private void ShootAt()
         {
             Debug.Log("Create bullet toward : " + m_TargetProvider.TargetPosition);
-            OnShoot?.Invoke();
             m_BulletCount--;
             m_ShootClock.Restart(m_ShootDelay);
+            OnShoot?.Invoke();
         }
     }
 }

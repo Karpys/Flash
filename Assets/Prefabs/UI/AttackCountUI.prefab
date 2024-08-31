@@ -85,7 +85,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5007775545246554411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttackUiHolder: {fileID: 3574820293733838431}
   m_AttackUI: {fileID: 2958666078219318549, guid: 2079e38c5f3616748bec71e1c36657da, type: 3}
+  m_Layout: {fileID: 3574820293733838431}
 --- !u!1 &3494766357572187303
 GameObject:
   m_ObjectHideFlags: 0
