@@ -2,11 +2,13 @@
 {
     using System;
     using KarpysDev.KarpysUtils;
+    using Manager;
     using UnityEngine;
+    using Object = UnityEngine.Object;
 
     public class ShooterBehaviour : IMonsterBehaviour
     {
-        private Transform m_Bullet = null;
+        private BaseBulletBehaviour m_Bullet = null;
         private int m_BulletCount = 0;
         private float m_ShootForce = 0;
         private float m_ShootDelay = 0;
@@ -15,7 +17,7 @@
         private Clock m_ShootClock = null;
         public Action OnShoot = null;
         public int BulletCount => m_BulletCount;
-        public ShooterBehaviour(Transform bullet, ITargetProvider targetProvider,int bulletCount, float shootDelay, float shootForce)
+        public ShooterBehaviour(BaseBulletBehaviour bullet, ITargetProvider targetProvider,int bulletCount, float shootDelay, float shootForce)
         {
             m_Bullet = bullet;
             m_TargetProvider = targetProvider;
@@ -35,7 +37,8 @@
 
         private void ShootAt()
         {
-            Debug.Log("Create bullet toward : " + m_TargetProvider.TargetPosition);
+            BaseBulletBehaviour bullet = Object.Instantiate(m_Bullet, GameManager.Instance.BulletRoot);
+            bullet.ShootAt(m_TargetProvider.TargetPosition);
             m_BulletCount--;
             m_ShootClock.Restart(m_ShootDelay);
             OnShoot?.Invoke();

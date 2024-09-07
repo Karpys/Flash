@@ -52,7 +52,7 @@ MonoBehaviour:
   m_AttackCountUI: {fileID: 6152756813955260259}
   m_GunLookAt: {fileID: 6290616319370961502}
   m_BulletCount: 3
-  m_Bullet: {fileID: 8204153205770101003}
+  m_Bullet: {fileID: 6512121884508000218, guid: 4e68b733ff56ec049af3ebdcbb152918, type: 3}
   m_ShootForce: 1
   m_ShootDelay: 1
 --- !u!114 &7602822624445590622

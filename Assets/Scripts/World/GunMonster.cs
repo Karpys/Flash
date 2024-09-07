@@ -10,7 +10,7 @@ namespace Flash.World
         [SerializeField] private AttackCountUI m_AttackCountUI = null;
         [SerializeField] private LookAt m_GunLookAt = null;
         [SerializeField] private int m_BulletCount = 3;
-        [SerializeField] private Transform m_Bullet = null;
+        [SerializeField] private BaseBulletBehaviour m_Bullet = null;
 
         [Header("Shoot Parameters")]
         [SerializeField] private float m_ShootForce = 1;
