@@ -9,6 +9,7 @@
     {
         Vector3 TargetPosition { get; }
     }
+
     public abstract class BaseMonster : MonoBehaviour,ITargetProvider
     {
         [SerializeField] private float m_BehaveDelay = 1;

@@ -13,14 +13,16 @@
         private float m_ShootForce = 0;
         private float m_ShootDelay = 0;
         private ITargetProvider m_TargetProvider = null;
+        private IShootPositionProvider m_ShootPositionProvider = null;
 
         private Clock m_ShootClock = null;
         public Action OnShoot = null;
         public int BulletCount => m_BulletCount;
-        public ShooterBehaviour(BaseBulletBehaviour bullet, ITargetProvider targetProvider,int bulletCount, float shootDelay, float shootForce)
+        public ShooterBehaviour(BaseBulletBehaviour bullet,IShootPositionProvider shootPositionProvider, ITargetProvider targetProvider,int bulletCount, float shootDelay, float shootForce)
         {
             m_Bullet = bullet;
             m_TargetProvider = targetProvider;
+            m_ShootPositionProvider = shootPositionProvider;
             m_BulletCount = bulletCount;
             m_ShootDelay = shootDelay;
             m_ShootForce = shootForce;
@@ -37,7 +39,7 @@
 
         private void ShootAt()
         {
-            BaseBulletBehaviour bullet = Object.Instantiate(m_Bullet, GameManager.Instance.BulletRoot);
+            BaseBulletBehaviour bullet = Object.Instantiate(m_Bullet, m_ShootPositionProvider.ShootPosition,Quaternion.identity ,GameManager.Instance.BulletRoot);
             bullet.ShootAt(m_TargetProvider.TargetPosition);
             m_BulletCount--;
             m_ShootClock.Restart(m_ShootDelay);

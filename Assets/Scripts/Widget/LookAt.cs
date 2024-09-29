@@ -1,6 +1,5 @@
-﻿namespace Widget
+﻿namespace Flash.Widget
 {
-    using System;
     using UnityEngine;
 
     public class LookAt : MonoBehaviour
