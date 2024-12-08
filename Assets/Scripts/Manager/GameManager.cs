@@ -1,5 +1,6 @@
 ﻿namespace Flash.Manager
 {
+    using System;
     using Player;
     using KarpysDev.KarpysUtils;
     using UnityEngine;
@@ -8,8 +9,14 @@
     {
         [SerializeField] private PlayerController m_PlayerController = null;
         [SerializeField] private Transform m_BulletRoot = null;
-
+        [SerializeField] private LevelCreator m_LevelCreator = null;
+        
         public PlayerController PlayerController => m_PlayerController;
         public Transform BulletRoot => m_BulletRoot;
+
+        public void Start()
+        {
+            m_LevelCreator.GenerateLevel();
+        }
     }
 }

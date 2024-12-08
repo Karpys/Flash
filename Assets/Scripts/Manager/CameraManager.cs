@@ -7,7 +7,7 @@
 
     public class CameraManager : SingletonMonoBehavior<CameraManager>
     {
-        [SerializeField] private float m_AttachDuration = 0.25f;
+        [SerializeField] private float m_AttachSpeed = 0.25f;
         [SerializeField] private Ease m_AttachEase = Ease.LINEAR;
         [SerializeField] private Transform m_StartAttach = null;
 
@@ -20,7 +20,8 @@
         public void Attach(Transform target)
         {
             transform.parent = target;
-            transform.DoLocalMove(new Vector3(0,0,-10), m_AttachDuration).SetEase(m_AttachEase);
+            float distance = Vector3.Distance(target.position, transform.position);
+            transform.DoLocalMove(new Vector3(0,0,-10), m_AttachSpeed.ToTime(distance)).SetEase(m_AttachEase);
         }
     }
 }

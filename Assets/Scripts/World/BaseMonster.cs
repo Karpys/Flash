@@ -3,6 +3,7 @@
     using KarpysDev.KarpysUtils;
     using Manager;
     using Player;
+    using Unity.VisualScripting;
     using UnityEngine;
 
     public interface ITargetProvider
@@ -14,6 +15,7 @@
     {
         [SerializeField] private float m_BehaveDelay = 1;
 
+        private ISpawnOrigin m_SpawnOrigin = null;
         private bool m_IsDead = false;
         private Clock m_BehaveSwitch = null;
         private bool m_ActiveBehave = false;
@@ -25,6 +27,11 @@
         {
             m_PlayerController = GameManager.Instance.PlayerController;
             m_BehaveSwitch = new Clock(m_BehaveDelay, ActiveBehave);
+        }
+
+        public void Initialize(ISpawnOrigin spawnOrigin)
+        {
+            m_SpawnOrigin = spawnOrigin;
         }
 
         private void ActiveBehave()
@@ -44,6 +51,10 @@
 
         protected void TriggerDeath()
         {
+            if(m_IsDead)
+                return;
+            
+            m_SpawnOrigin.MonsterDead(this);
             m_IsDead = true;
             DeathAnim();
         }
@@ -52,5 +63,10 @@
         {
             Destroy(gameObject);
         }
+    }
+
+    public interface ISpawnOrigin
+    {
+        public void MonsterDead(BaseMonster baseMonster);
     }
 }
