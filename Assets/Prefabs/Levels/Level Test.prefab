@@ -252,7 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RoomLevel: {fileID: 6273285690337776027}
   m_RoomMonsters:
-  - m_Monster: {fileID: 7575530058266014670, guid: 4eaf48977265786468d9c57d420bacbe, type: 3}
+  - m_Monster: {fileID: 1822401797711867852, guid: 32d58cc0b10b8884a95383bd792840c5, type: 3}
     m_SpawnPlace: {fileID: 4271550984126342935}
   m_StartDelay: 1
   m_SpawnAdditiveDelay: 0.25
